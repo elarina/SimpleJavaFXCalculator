@@ -8,3 +8,7 @@ Simple Java FX Calculator with FXML and JavaFX CSS
 3. Run build-exe.bat
 4. Run in cmd "cd SimpleJavaFXCalculator"
 5. Run in cmd "SimpleJavaFXCalculator.exe". 
+
+## Demo
+
+See [demo](https://elarina.github.io/SimpleJavaFXCalculator/)
