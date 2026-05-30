@@ -6,27 +6,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml">
-    <columnConstraints>
-        <ColumnConstraints percentWidth="33.333" hgrow="ALWAYS" />
-        <ColumnConstraints percentWidth="33.333" hgrow="ALWAYS" />
-        <ColumnConstraints percentWidth="33.333" hgrow="ALWAYS" />
-    </columnConstraints>
-
-    <rowConstraints>
-        <RowConstraints percentHeight="33.333" vgrow="ALWAYS"/>
-        <RowConstraints percentHeight="33.333" vgrow="ALWAYS"/>
-        <RowConstraints percentHeight="33.333" vgrow="ALWAYS"/>
-    </rowConstraints>
+<?import javafx.geometry.Insets?>
+<fx:root fx:id="buttonGrid" type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml">
     <children>
-    <Button fx:id="oneBtn" text="1" onAction="#oneClicked" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-    <Button fx:id="twoBtn" text="2" onAction="#twoClicked" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-    <Button fx:id="threeBtn" text="3" onAction="#threeClicked" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-    <Button fx:id="fourBtn" text="4" onAction="#fourClicked" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-    <Button fx:id="fiveBtn" text="5" onAction="#fiveClicked" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <Button fx:id="sixBtn" text="6" onAction="#sixClicked" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-    <Button fx:id="sevenBtn" text="7" onAction="#sevenClicked" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-    <Button fx:id="eightBtn" text="8" onAction="#eightClicked" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-    <Button fx:id="nineBtn" text="9" onAction="#nineClicked" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <Label fx:id="calculationRow"/>
+        <Button fx:id="btn1" text="1"/>
+        <Button fx:id="btn2" text="2"/>
+        <Button fx:id="btn3" text="3"/>
+        <Button fx:id="btn4" text="4"/>
+        <Button fx:id="btn5" text="5"/>
+        <Button fx:id="btn6" text="6"/>
+        <Button fx:id="btn7" text="7"/>
+        <Button fx:id="btn8" text="8"/>
+        <Button fx:id="btn9" text="9"/>
+        <Button fx:id="btn0" text="0"/>
+        <Button fx:id="ctrl1" text="C" styleClass="controlOperation" tooltip="$clearTooltip">
+            <fx:define>
+                <Tooltip fx:id="clearTooltip" text="Clear All" />
+            </fx:define>
+        </Button>
+
+        <Button fx:id="ctrl2" text="MS" styleClass="controlOperation" tooltip="$saveToMemoryTooltip">
+            <fx:define>
+                <Tooltip fx:id="saveToMemoryTooltip" text="Save to memory" />
+            </fx:define>
+        </Button>
+
+
+        <Button fx:id="ctrl3" text="B" styleClass="controlOperation" tooltip="$backspaceTooltip">
+            <fx:define>
+                <Tooltip fx:id="backspaceTooltip" text="Backspace" />
+            </fx:define>
+        </Button>
+
+        <Button fx:id="calc1" text="+" styleClass="calculateOperation"/>
+        <Button fx:id="calc2" text="-" styleClass="calculateOperation"/>
+        <Button fx:id="calc3" text="*" styleClass="calculateOperation"/>
+        <Button fx:id="calc4" text="/" styleClass="calculateOperation"/>
+        <Button fx:id="calc5" text="rem" styleClass="calculateOperation"/>
+        <Button fx:id="calc6" text="^2" styleClass="calculateOperation"/>
+        <Button fx:id="calc7" text="=" styleClass="calculateOperation"/>
     </children>
 </fx:root>

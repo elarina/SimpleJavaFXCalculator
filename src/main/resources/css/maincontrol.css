@@ -1,13 +1,12 @@
 .button {
     -fx-background-color: #ADD8E6;
     -fx-opacity: 0.5;
-    -fx-pref-width: 100px;
-    -fx-pref-height: 100px;
     -fx-border-color: white;
     -fx-max-width: Infinity;
     -fx-max-height: Infinity;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
+    -fx-font-size: 20px;
 }
 
 .button:hover {
@@ -17,3 +16,32 @@
 .button:pressed {
     -fx-background-color: #abc4c5;
 }
+
+.label {
+    -fx-font-size: 30px;
+}
+
+.   controlOperation {
+    -fx-background-color: #b9b9fa;
+}
+
+.controlOperation:hover {
+    -fx-background-color: #d7d7fc;
+}
+
+.controlOperation:pressed {
+    -fx-background-color: #acacbf;
+}
+
+.calculateOperation {
+    -fx-background-color: #a2e8fa;
+}
+
+.calculateOperation:hover {
+    -fx-background-color: #c2f1fc;
+}
+
+.calculateOperation:pressed {
+    -fx-background-color: #a8b9bd;
+}
+

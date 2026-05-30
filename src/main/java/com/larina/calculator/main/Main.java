@@ -26,6 +26,8 @@ public class Main extends Application {
         String url = Objects.requireNonNull(getClass().getResource("/css/maincontrol.css")).toExternalForm();
         scene.getStylesheets().add(url);
 
+        primaryStage.setMinWidth(500);
+        primaryStage.setMinHeight(500);
         primaryStage.setTitle("Simple JavaFX Calculator");
         primaryStage.setScene(scene);
         primaryStage.show();

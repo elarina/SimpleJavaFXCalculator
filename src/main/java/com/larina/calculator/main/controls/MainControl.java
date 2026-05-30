@@ -1,14 +1,28 @@
 package com.larina.calculator.main.controls;
 
-import com.larina.calculator.util.ResourceUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.GridPane;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 public class MainControl extends GridPane {
+    private static final int COLUMN_COUNT = 3;
+
+    @FXML private GridPane gridPane;
+    @FXML private Label calculationRow;
+    @FXML private GridPane buttonGrid;
+    List<String> buttonGroups = Arrays.asList("ctrl", "btn","calc");
+    private int rowCount;
+
     public MainControl(){
         URL fxmlUrl = getClass().getResource("/fxml/main.fxml");
         FXMLLoader loader = new FXMLLoader();
@@ -25,51 +39,76 @@ public class MainControl extends GridPane {
 
     @FXML
     private void initialize() {
-        // Do some work
+        List<Button> allButtons = getAllButtons();
+        Optional<Node> textOpt = buttonGrid.getChildren().stream().filter(Label.class::isInstance).findFirst();
+
+        if(textOpt.isPresent()){
+            Node text = textOpt.get();
+            GridPane.setRowIndex(text, 0);
+            GridPane.setColumnIndex(text,0);
+            GridPane.setColumnSpan(text, 3);
+            GridPane.setRowSpan(text, 2);
+        }
+        int startPosition = 1;
+        for (String g: buttonGroups){
+            startPosition = setButtonPositions(this, allButtons.stream().filter(b -> b.getId().contains(g)).toList(), startPosition);
+        }
+
+        this.rowCount = startPosition;
+        setColumnPercentWidth();
+        setRowPercentHeight();
     }
 
-    @FXML
-    private void oneClicked() {
-        System.out.println("One clicked");
+    private void setColumnPercentWidth() {
+        buttonGrid.getColumnConstraints().clear();
+        for(int i = 0; i < COLUMN_COUNT; i++){
+            ColumnConstraints cc = new ColumnConstraints();
+            cc.setPercentWidth(((double) 100 / COLUMN_COUNT));
+            cc.setHgrow(Priority.ALWAYS);
+            buttonGrid.getColumnConstraints().add(cc);
+        }
     }
 
-    @FXML
-    private void twoClicked() {
-        System.out.println("Two clicked");
+    private static int setButtonPositions(MainControl mainControl, List<Button> buttons, int rowStartPosition) {
+        System.out.println(rowStartPosition);
+        int row = rowStartPosition;
+        int col = 0;
+
+        for (Button button : buttons) {
+            if(col%3 == 0){
+                col = 0;
+                row++;
+            }
+            GridPane.setRowIndex(button, row);
+            GridPane.setColumnIndex(button, col);
+            button.setOnAction(e -> mainControl.handleDigitButton(button.getText()));
+            col++;
+        }
+            return row;
+
     }
 
-    @FXML
-    private void threeClicked() {
-        System.out.println("Three clicked");
+    private void setRowPercentHeight() {
+        buttonGrid.getRowConstraints().clear();
+        double rowWidth = (double)100/rowCount;
+
+        for(int i = 0; i < this.rowCount + 1; i++){
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setPercentHeight(rowWidth);
+            rowConstraints.setVgrow(Priority.ALWAYS);
+            buttonGrid.getRowConstraints().add(rowConstraints);
+        }
     }
 
-    @FXML
-    private void fourClicked() {
-        System.out.println("Four clicked");
+    private List<Button> getAllButtons() {
+        return buttonGrid.getChildren()
+                .filtered(node -> node instanceof Button)
+                .stream()
+                .map(node -> (Button) node).toList();
     }
 
-    @FXML
-    private void fiveClicked() {
-        System.out.println("Five clicked");
-    }
-
-    @FXML
-    private void sixClicked() {
-        System.out.println("Six clicked");
-    }
-
-    @FXML
-    private void sevenClicked() {
-        System.out.println("Seven clicked");
-    }
-
-    @FXML
-    private void eightClicked() {
-        System.out.println("Eight clicked");
-    }
-
-    @FXML
-    private void nineClicked() {
-        System.out.println("Nine clicked");
+    private void handleDigitButton(String number) {
+        System.out.println("Нажата кнопка: " + number);
+        calculationRow.setText(calculationRow.getText() + " " + number);
     }
 }
