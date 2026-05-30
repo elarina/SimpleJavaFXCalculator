@@ -1,4 +1,4 @@
-package com.larina.hello.example;
+package com.larina.calculator.main;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
