@@ -1,0 +1,19 @@
+.button {
+    -fx-background-color: #ADD8E6;
+    -fx-opacity: 0.5;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-border-color: white;
+    -fx-max-width: Infinity;
+    -fx-max-height: Infinity;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.button:hover {
+    -fx-background-color: #87CEFA;
+}
+
+.button:pressed {
+    -fx-background-color: #abc4c5;
+}
