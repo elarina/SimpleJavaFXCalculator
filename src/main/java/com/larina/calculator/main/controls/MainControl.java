@@ -112,7 +112,6 @@ public class MainControl extends GridPane {
             case "C" -> calculationRow.setText("");
             case "B" -> calculationRow.setText(calculationRow.getText().substring(0, calculationRow.getText().length() - 2));
             default ->  calculationRow.setText(calculationRow.getText() + " " + buttonText);
-
         };
     }
 }
