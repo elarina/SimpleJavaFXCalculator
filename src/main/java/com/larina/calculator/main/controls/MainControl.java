@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class MainControl extends GridPane {
     public MainControl(){
-        URL fxmlUrl = ResourceUtil.getResourceURL("fxml/main.fxml");
+        URL fxmlUrl = getClass().getResource("/fxml/main.fxml");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(fxmlUrl);
         loader.setRoot(this);
