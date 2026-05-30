@@ -21,27 +21,29 @@
     -fx-font-size: 30px;
 }
 
-.   controlOperation {
-    -fx-background-color: #b9b9fa;
+.controlOperation {
+    -fx-background-color: #6ca2d4;
+    -fx-text-base-color: white;
 }
 
 .controlOperation:hover {
-    -fx-background-color: #d7d7fc;
+    -fx-background-color: #7dbefa;
 }
 
 .controlOperation:pressed {
-    -fx-background-color: #acacbf;
+    -fx-background-color: #abc4c5;
 }
 
 .calculateOperation {
-    -fx-background-color: #a2e8fa;
+    -fx-background-color: #6ca2d4;
+    -fx-text-base-color: white;
 }
 
 .calculateOperation:hover {
-    -fx-background-color: #c2f1fc;
+    -fx-background-color: #7dbefa;
 }
 
 .calculateOperation:pressed {
-    -fx-background-color: #a8b9bd;
+    -fx-background-color: #abc4c5;
 }
 
