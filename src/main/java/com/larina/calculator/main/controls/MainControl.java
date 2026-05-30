@@ -107,8 +107,12 @@ public class MainControl extends GridPane {
                 .map(node -> (Button) node).toList();
     }
 
-    private void handleDigitButton(String number) {
-        System.out.println("Нажата кнопка: " + number);
-        calculationRow.setText(calculationRow.getText() + " " + number);
+    private void handleDigitButton(String buttonText) {
+        switch(buttonText){
+            case "C" -> calculationRow.setText("");
+            case "B" -> calculationRow.setText(calculationRow.getText().substring(0, calculationRow.getText().length() - 2));
+            default ->  calculationRow.setText(calculationRow.getText() + " " + buttonText);
+
+        };
     }
 }
