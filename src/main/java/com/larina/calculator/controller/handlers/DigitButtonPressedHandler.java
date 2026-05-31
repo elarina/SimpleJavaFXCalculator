@@ -14,7 +14,13 @@ public class DigitButtonPressedHandler extends AbstractButtonPressedHandler {
         Calculator calculator = mainModel.getCalculator();
         double operand = Double.parseDouble(button.getText());
         calculator.setOperand(operand);
-        setTextInTextRow(button);
+
+        if (!calculator.isFinished()) {
+            setTextInTextRow(button);
+        } else {
+            mainModel.getTextRowValue().setText(button.getText());
+            calculator.start();
+        }
     }
 
     private void setTextInTextRow(Button button) {

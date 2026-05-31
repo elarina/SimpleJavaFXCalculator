@@ -5,65 +5,72 @@ public class Calculator {
     private Double secondOperand;
     private Operation operation;
     private boolean resume;
+    private boolean finished;
 
     public void calculate() {
-        if(secondOperand == null){
+        start();
+        if (secondOperand == null) {
             System.out.println("Second operand is not defined");
             return;
         }
 
-        switch(operation){
-            case Operation.PLUS ->  {
+        if(operation == null){
+            System.out.println("Operation is not defined");
+            return;
+        }
+        switch (operation) {
+            case Operation.PLUS -> {
                 firstOperand += secondOperand;
             }
-            case Operation.MINUS ->  {
+            case Operation.MINUS -> {
                 firstOperand -= secondOperand;
             }
-            case Operation.MULTIPLICATION ->  {
+            case Operation.MULTIPLICATION -> {
                 firstOperand *= secondOperand;
             }
-            case Operation.DIVISION ->  {
+            case Operation.DIVISION -> {
                 firstOperand /= secondOperand;
             }
-            case Operation.POW ->  {
+            case Operation.POW -> {
                 firstOperand = Math.pow(firstOperand, secondOperand);
             }
-            case Operation.REMAINDER ->  {
+            case Operation.REMAINDER -> {
                 firstOperand %= secondOperand;
             }
-        };
+        }
+        ;
     }
 
-    public void clearCalculation(){
+    public void clearCalculation() {
         this.firstOperand = null;
         this.secondOperand = null;
         this.operation = null;
         this.resume = false;
     }
 
-    public void clearCalculationKeepFirstOperand(){
+    public void clearCalculationKeepFirstOperand() {
         this.secondOperand = null;
         this.operation = null;
     }
 
     private void setFirstOperand(Double firstOperand) {
-        if(this.firstOperand == null){
+        if (this.firstOperand == null) {
             this.firstOperand = firstOperand;
         } else {
-            this.firstOperand = this.firstOperand*10 + firstOperand;
+            this.firstOperand = this.firstOperand * 10 + firstOperand;
         }
     }
 
     private void setSecondOperand(Double secondOperand) {
-        if(this.secondOperand == null){
+        if (this.secondOperand == null) {
             this.secondOperand = secondOperand;
         } else {
-            this.secondOperand = this.secondOperand*10 + secondOperand;
+            this.secondOperand = this.secondOperand * 10 + secondOperand;
         }
     }
 
     public void setOperation(Operation operation) {
-        if(!Operation.getControlOperations().contains(operation)) {
+        if (!Operation.getControlOperations().contains(operation)) {
             this.operation = operation;
         }
     }
@@ -80,8 +87,8 @@ public class Calculator {
         return operation;
     }
 
-    public void setOperand(Double operand){
-        if(firstOperand == null){
+    public void setOperand(Double operand) {
+        if (firstOperand == null) {
             setFirstOperand(operand);
         } else {
             setSecondOperand(operand);
@@ -96,5 +103,18 @@ public class Calculator {
         this.resume = resume;
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
 
+    public void finish() {
+        this.finished = true;
+        this.secondOperand = null;
+        this.operation = null;
+        this.resume = false;
+    }
+
+    public void start(){
+        this.finished = false;
+    }
 }
