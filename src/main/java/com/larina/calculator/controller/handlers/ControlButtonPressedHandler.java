@@ -43,8 +43,9 @@ public class ControlButtonPressedHandler extends  AbstractButtonPressedHandler{
                 if(calculator.getSecondOperand() != null) {
                     textRowValue.setText(String.valueOf(calculator.getFirstOperand()));
                     calculator.setResume(true);
+                    calculator.clearCalculationKeepFirstOperand();
                 }
-                calculator.clearCalculationKeepFirstOperand();
+
             }
 //            default ->  textRowValue.setText(textRowValue.getText() + " " + button.getText());
         };
