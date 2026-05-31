@@ -39,12 +39,18 @@
             </fx:define>
         </Button>
 
+        <Button fx:id="ctrl4" text="R" styleClass="controlOperation" tooltip="$revertTooltip">
+            <fx:define>
+                <Tooltip fx:id="revertTooltip" text="Revert previous operation" />
+            </fx:define>
+        </Button>
+
         <Button fx:id="calc1" text="+" styleClass="calculateOperation"/>
         <Button fx:id="calc2" text="-" styleClass="calculateOperation"/>
         <Button fx:id="calc3" text="*" styleClass="calculateOperation"/>
         <Button fx:id="calc4" text="/" styleClass="calculateOperation"/>
         <Button fx:id="calc5" text="rem" styleClass="calculateOperation"/>
-        <Button fx:id="calc6" text="^2" styleClass="calculateOperation"/>
+        <Button fx:id="calc6" text="pow" styleClass="calculateOperation"/>
         <Button fx:id="calc7" text="=" styleClass="calculateOperation"/>
     </children>
 </fx:root>

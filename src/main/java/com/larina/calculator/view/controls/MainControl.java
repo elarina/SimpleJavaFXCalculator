@@ -1,11 +1,15 @@
-package com.larina.calculator.main.controls;
+package com.larina.calculator.view.controls;
 
+import com.larina.calculator.controller.Controller;
+import com.larina.calculator.controller.listeners.ViewListener;
+import com.larina.calculator.model.calculation.Calculator;
+import com.larina.calculator.model.ButtonGroup;
+import com.larina.calculator.model.memory.CalculationMemory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -16,13 +20,12 @@ import java.util.Optional;
 
 public class MainControl extends GridPane {
     private static final int COLUMN_COUNT = 3;
-
     @FXML private GridPane gridPane;
     @FXML private Label calculationRow;
     @FXML private GridPane buttonGrid;
-    List<String> buttonGroups = Arrays.asList("ctrl", "btn","calc");
+    List<String> buttonGroups = Arrays.asList(ButtonGroup.CONTROL_OPERATION.getButtonIdPrefix(),ButtonGroup.DIGIT.getButtonIdPrefix(), ButtonGroup.CALC_OPERATION.getButtonIdPrefix());
     private int rowCount;
-
+    private ViewListener listener;
     public MainControl(){
         URL fxmlUrl = getClass().getResource("/fxml/main.fxml");
         FXMLLoader loader = new FXMLLoader();
@@ -35,6 +38,10 @@ public class MainControl extends GridPane {
         catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+    }
+
+    public void setListener(ViewListener listener){
+        this.listener = listener;
     }
 
     @FXML
@@ -81,7 +88,7 @@ public class MainControl extends GridPane {
             }
             GridPane.setRowIndex(button, row);
             GridPane.setColumnIndex(button, col);
-            button.setOnAction(e -> mainControl.handleDigitButton(button.getText()));
+            button.setOnAction(e -> mainControl.handleButtonPressed(button));
             col++;
         }
             return row;
@@ -107,11 +114,13 @@ public class MainControl extends GridPane {
                 .map(node -> (Button) node).toList();
     }
 
-    private void handleDigitButton(String buttonText) {
-        switch(buttonText){
-            case "C" -> calculationRow.setText("");
-            case "B" -> calculationRow.setText(calculationRow.getText().substring(0, calculationRow.getText().length() - 2));
-            default ->  calculationRow.setText(calculationRow.getText() + " " + buttonText);
-        };
+    private void handleButtonPressed(Button button) {
+        if(listener != null){
+            listener.onButtonClicked(button);
+        }
+    }
+
+    public void updateTextRowValue(String text) {
+        calculationRow.setText(text);
     }
 }
