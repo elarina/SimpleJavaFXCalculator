@@ -51,6 +51,6 @@
         <Button fx:id="calc4" text="/" styleClass="calculateOperation"/>
         <Button fx:id="calc5" text="rem" styleClass="calculateOperation"/>
         <Button fx:id="calc6" text="pow" styleClass="calculateOperation"/>
-        <Button fx:id="calc7" text="=" styleClass="calculateOperation"/>
+        <Button fx:id="ctrl7" text="=" styleClass="calculateOperation"/>
     </children>
 </fx:root>

@@ -20,10 +20,33 @@ public class ControlButtonPressedHandler extends  AbstractButtonPressedHandler{
                 calculator.clearCalculation();
             }
             case "MS" -> mainModel.getMemory().addToMemory(calculator.getFirstOperand());
-            case "B" -> textRowValue.setText(textRowValue.getText().substring(0, textRowValue.getText().length() - 1));
-            case "R" -> {
+            case "B" -> {
+//                if(calculator.getSecondOperand() != null){
+//                    double newValue = (double)(calculator.getSecondOperand().intValue() / 10);
+//                    calculator.setSecondOperand(newValue);
+//                    textRowValue.setText(textRowValue.getText().substring(0, textRowValue.getText().length() - 1));
+//                } else if (calculator.getOperation() != null){
+//                    calculator.setOperation(null);
+//                    textRowValue.setText(textRowValue.getText().substring(0, textRowValue.getText().length() - 1));
+//                } else if (!calculator.isResume()){
+//                    double newValue = (double)(calculator.getFirstOperand().intValue() / 10);
+//                    calculator.setFirstOperand(newValue);
+//                    textRowValue.setText(textRowValue.getText().substring(0, textRowValue.getText().length() - 1));
+//                }
             }
-            default ->  textRowValue.setText(textRowValue.getText() + " " + button.getText());
+            case "R" -> {
+
+            }
+            case "=" -> {
+                calculator.calculate();
+
+                if(calculator.getSecondOperand() != null) {
+                    textRowValue.setText(String.valueOf(calculator.getFirstOperand()));
+                    calculator.setResume(true);
+                }
+                calculator.clearCalculationKeepFirstOperand();
+            }
+//            default ->  textRowValue.setText(textRowValue.getText() + " " + button.getText());
         };
     }
 }

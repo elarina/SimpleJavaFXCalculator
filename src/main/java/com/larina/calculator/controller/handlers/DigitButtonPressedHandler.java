@@ -12,15 +12,8 @@ public class DigitButtonPressedHandler extends AbstractButtonPressedHandler {
     @Override
     protected void handleButtonPressed(Button button) {
         Calculator calculator = mainModel.getCalculator();
-
         double operand = Double.parseDouble(button.getText());
-
-        if(calculator.getOperation() == null && !calculator.isResume()){
-            calculator.setFirstOperand(operand);
-        } else if(calculator.getOperation() != null) {
-            calculator.setSecondOperand(operand);
-        }
-
+        calculator.setOperand(operand);
         setTextInTextRow(button);
     }
 

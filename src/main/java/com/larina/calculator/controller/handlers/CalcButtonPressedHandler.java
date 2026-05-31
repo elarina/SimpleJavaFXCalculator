@@ -23,69 +23,31 @@ public class CalcButtonPressedHandler extends AbstractButtonPressedHandler {
             throw new IllegalArgumentException("Illegal operation");
         }
         Calculator calculator = mainModel.getCalculator();
+        TextRowValue textRowValue = mainModel.getTextRowValue();
 
         addOperationText(op.get(), calculator);
-        if(calculator.getSecondOperand() != null){
-            calculate();
-            if(op.get() != Operation.EQUAL_SIGN){
-                mainModel.getTextRowValue().setText(String.valueOf(calculator.getFirstOperand()) + " " + op.get().getSign() + " ");
-            } else {
-                mainModel.getTextRowValue().setText(String.valueOf(calculator.getFirstOperand()));
-            }
-        } else if(op.get() != Operation.EQUAL_SIGN) {
-            calculator.setOperation(op.get());
+        calculator.calculate();
+
+        if(calculator.getSecondOperand() != null) {
+            textRowValue.setText(String.valueOf(calculator.getFirstOperand()) + op.get().getSign());
+            calculator.setResume(true);
         }
+        calculator.clearCalculationKeepFirstOperand();
+        calculator.setOperation(op.get());
     }
 
     private void addOperationText(Operation operation, Calculator calculator) {
-        if(operation == Operation.EQUAL_SIGN){
-            return;
-        }
+//        if(Operation.getControlOperations().contains(operation)){
+//            return;
+//        }
 
-        if(calculator.getOperation() == null){
-            setTextInTextRow(operation.getSign());
-        } else {
-            setTextInTextRowRemovePrevOp(operation.getSign());
-        }
+        setTextInTextRow(operation.getSign(), calculator.getOperation() != null);
     }
 
-    private void setTextInTextRow(String additionalText) {
+    private void setTextInTextRow(String additionalText, boolean clearPreviousOperation) {
         String text = mainModel.getTextRowValue().getText();
         String previousText = text == null ? "" : text;
+        previousText = clearPreviousOperation ? previousText.substring(0, previousText.length() - 1) : previousText;
         mainModel.getTextRowValue().setText(previousText + additionalText);
-    }
-
-    private void setTextInTextRowRemovePrevOp(String additionalText) {
-        String text = mainModel.getTextRowValue().getText();
-        String previousText = text == null ? "" : text;
-        String substring = previousText.substring(0, previousText.length() - 1);
-        mainModel.getTextRowValue().setText(substring + additionalText);
-    }
-
-    private void calculate() {
-        Calculator calculator = mainModel.getCalculator();
-
-        switch(calculator.getOperation()){
-            case Operation.PLUS ->  {
-                calculator.setFirstOperand(calculator.getFirstOperand() + calculator.getSecondOperand());
-            }
-            case Operation.MINUS ->  {
-                calculator.setFirstOperand(calculator.getFirstOperand() - calculator.getSecondOperand());
-            }
-            case Operation.MULTIPLICATION ->  {
-                calculator.setFirstOperand(calculator.getFirstOperand() * calculator.getSecondOperand());
-            }
-            case Operation.DIVISION ->  {
-                calculator.setFirstOperand(calculator.getFirstOperand() / calculator.getSecondOperand());
-            }
-            case Operation.POW ->  {
-                calculator.setFirstOperand(Math.pow(calculator.getFirstOperand(), calculator.getSecondOperand()));
-            }
-            case Operation.REMAINDER ->  {
-                calculator.setFirstOperand(calculator.getFirstOperand() % calculator.getSecondOperand());
-            }
-        };
-        mainModel.getTextRowValue().setText("");
-        calculator.clearCalculationKeepFirstOperand();
     }
 }

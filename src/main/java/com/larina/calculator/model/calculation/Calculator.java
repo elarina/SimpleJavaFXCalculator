@@ -6,6 +6,34 @@ public class Calculator {
     private Operation operation;
     private boolean resume;
 
+    public void calculate() {
+        if(secondOperand == null){
+            System.out.println("Second operand is not defined");
+            return;
+        }
+
+        switch(operation){
+            case Operation.PLUS ->  {
+                firstOperand += secondOperand;
+            }
+            case Operation.MINUS ->  {
+                firstOperand -= secondOperand;
+            }
+            case Operation.MULTIPLICATION ->  {
+                firstOperand *= secondOperand;
+            }
+            case Operation.DIVISION ->  {
+                firstOperand /= secondOperand;
+            }
+            case Operation.POW ->  {
+                firstOperand = Math.pow(firstOperand, secondOperand);
+            }
+            case Operation.REMAINDER ->  {
+                firstOperand %= secondOperand;
+            }
+        };
+    }
+
     public void clearCalculation(){
         this.firstOperand = null;
         this.secondOperand = null;
@@ -16,18 +44,17 @@ public class Calculator {
     public void clearCalculationKeepFirstOperand(){
         this.secondOperand = null;
         this.operation = null;
-        this.resume = false;
     }
 
-    public void setFirstOperand(Double firstOperand) {
-        if(this.firstOperand == null || resume || operation != null){
+    private void setFirstOperand(Double firstOperand) {
+        if(this.firstOperand == null){
             this.firstOperand = firstOperand;
         } else {
             this.firstOperand = this.firstOperand*10 + firstOperand;
         }
     }
 
-    public void setSecondOperand(Double secondOperand) {
+    private void setSecondOperand(Double secondOperand) {
         if(this.secondOperand == null){
             this.secondOperand = secondOperand;
         } else {
@@ -36,7 +63,9 @@ public class Calculator {
     }
 
     public void setOperation(Operation operation) {
-        this.operation = operation;
+        if(!Operation.getControlOperations().contains(operation)) {
+            this.operation = operation;
+        }
     }
 
     public Double getFirstOperand() {
@@ -51,6 +80,14 @@ public class Calculator {
         return operation;
     }
 
+    public void setOperand(Double operand){
+        if(firstOperand == null){
+            setFirstOperand(operand);
+        } else {
+            setSecondOperand(operand);
+        }
+    }
+
     public boolean isResume() {
         return resume;
     }
@@ -58,4 +95,6 @@ public class Calculator {
     public void setResume(boolean resume) {
         this.resume = resume;
     }
+
+
 }
