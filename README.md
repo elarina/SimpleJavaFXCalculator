@@ -1,7 +1,7 @@
 # SimpleJavaFXCalculator
 Simple Java FX Calculator with FXML and JavaFX CSS
 
-**THE DEVELOPMENT IS NOT COMPLETED YET**
+# THE DEVELOPMENT IS NOT COMPLETED YET
 
 ## Build and run
 
