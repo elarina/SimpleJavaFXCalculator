@@ -1,6 +1,8 @@
 # SimpleJavaFXCalculator
 Simple Java FX Calculator with FXML and JavaFX CSS
 
+# THE DEVELOPMENT IS NOT COMPLETED YET
+
 ## Build and run
 
 1. Clone project into local folder.
