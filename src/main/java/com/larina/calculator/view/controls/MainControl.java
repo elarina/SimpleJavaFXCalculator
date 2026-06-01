@@ -20,13 +20,17 @@ import java.util.Optional;
 
 public class MainControl extends GridPane {
     private static final int COLUMN_COUNT = 3;
-    @FXML private GridPane gridPane;
-    @FXML private Label calculationRow;
-    @FXML private GridPane buttonGrid;
-    List<String> buttonGroups = Arrays.asList(ButtonGroup.CONTROL_OPERATION.getButtonIdPrefix(),ButtonGroup.DIGIT.getButtonIdPrefix(), ButtonGroup.CALC_OPERATION.getButtonIdPrefix());
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private Label calculationRow;
+    @FXML
+    private GridPane buttonGrid;
+    List<String> buttonGroups = Arrays.asList(ButtonGroup.CONTROL_OPERATION.getButtonIdPrefix(), ButtonGroup.DIGIT.getButtonIdPrefix(), ButtonGroup.CALC_OPERATION.getButtonIdPrefix());
     private int rowCount;
     private ViewListener listener;
-    public MainControl(){
+
+    public MainControl() {
         URL fxmlUrl = getClass().getResource("/fxml/main.fxml");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(fxmlUrl);
@@ -34,13 +38,12 @@ public class MainControl extends GridPane {
         loader.setController(this);
         try {
             loader.load();
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
     }
 
-    public void setListener(ViewListener listener){
+    public void setListener(ViewListener listener) {
         this.listener = listener;
     }
 
@@ -49,15 +52,15 @@ public class MainControl extends GridPane {
         List<Button> allButtons = getAllButtons();
         Optional<Node> textOpt = buttonGrid.getChildren().stream().filter(Label.class::isInstance).findFirst();
 
-        if(textOpt.isPresent()){
+        if (textOpt.isPresent()) {
             Node text = textOpt.get();
             GridPane.setRowIndex(text, 0);
-            GridPane.setColumnIndex(text,0);
+            GridPane.setColumnIndex(text, 0);
             GridPane.setColumnSpan(text, 3);
             GridPane.setRowSpan(text, 2);
         }
         int startPosition = 1;
-        for (String g: buttonGroups){
+        for (String g : buttonGroups) {
             startPosition = setButtonPositions(this, allButtons.stream().filter(b -> b.getId().contains(g)).toList(), startPosition);
         }
 
@@ -68,7 +71,7 @@ public class MainControl extends GridPane {
 
     private void setColumnPercentWidth() {
         buttonGrid.getColumnConstraints().clear();
-        for(int i = 0; i < COLUMN_COUNT; i++){
+        for (int i = 0; i < COLUMN_COUNT; i++) {
             ColumnConstraints cc = new ColumnConstraints();
             cc.setPercentWidth(((double) 100 / COLUMN_COUNT));
             cc.setHgrow(Priority.ALWAYS);
@@ -82,7 +85,7 @@ public class MainControl extends GridPane {
         int col = 0;
 
         for (Button button : buttons) {
-            if(col%3 == 0){
+            if (col % 3 == 0) {
                 col = 0;
                 row++;
             }
@@ -91,15 +94,15 @@ public class MainControl extends GridPane {
             button.setOnAction(e -> mainControl.handleButtonPressed(button));
             col++;
         }
-            return row;
+        return row;
 
     }
 
     private void setRowPercentHeight() {
         buttonGrid.getRowConstraints().clear();
-        double rowWidth = (double)100/rowCount;
+        double rowWidth = (double) 100 / rowCount;
 
-        for(int i = 0; i < this.rowCount + 1; i++){
+        for (int i = 0; i < this.rowCount + 1; i++) {
             RowConstraints rowConstraints = new RowConstraints();
             rowConstraints.setPercentHeight(rowWidth);
             rowConstraints.setVgrow(Priority.ALWAYS);
@@ -115,7 +118,7 @@ public class MainControl extends GridPane {
     }
 
     private void handleButtonPressed(Button button) {
-        if(listener != null){
+        if (listener != null) {
             listener.onButtonClicked(button);
         }
     }

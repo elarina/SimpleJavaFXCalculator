@@ -8,12 +8,11 @@ import javafx.scene.control.Button;
 public class Controller implements ViewListener {
     private final MainModel model;
     private final MainView view;
-    private final ButtonPressedStrategy buttonPressedStrategy;
+    private ButtonPressedStrategy buttonPressedStrategy;
 
     public Controller(MainModel model, MainView view){
         this.model = model;
         this.view = view;
-        this.buttonPressedStrategy = new ButtonPressedStrategy(model);
     }
 
     public MainModel getModel() {
@@ -22,6 +21,10 @@ public class Controller implements ViewListener {
 
     public MainView getView() {
         return view;
+    }
+
+    public void setButtonPressedStrategy(ButtonPressedStrategy buttonPressedStrategy) {
+        this.buttonPressedStrategy = buttonPressedStrategy;
     }
 
     @Override

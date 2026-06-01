@@ -1,5 +1,6 @@
 package com.larina.calculator.main;
 
+import com.larina.calculator.controller.ButtonPressedStrategy;
 import com.larina.calculator.controller.Controller;
 import com.larina.calculator.model.MainModel;
 import com.larina.calculator.model.TextRowValue;
@@ -47,6 +48,7 @@ public class Main extends Application {
         Calculator calculator = new Calculator();
         MainModel model = new MainModel(textRowValue, memory, calculator);
         controller = new Controller(model, view);
+        controller.setButtonPressedStrategy(new ButtonPressedStrategy(model));
         view.addListener(controller);
         model.addListener(view);
     }
