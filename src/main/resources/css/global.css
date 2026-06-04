@@ -1,0 +1,14 @@
+.root {
+    -fx-base-button-color: #ADD8E6;
+    -fx-base-button-opacity: 0.5;
+    -fx-base-button-border-color: white;
+    -fx-base-button-radius: 20px;
+    -fx-base-button-hover-background-color: #87CEFA;
+    -fx-base-button-pressed-background-color: #abc4c5;
+
+    -fx-secondary-button-color: #6ca2d4;
+    -fx-secondary-button-hover-background-color: #7dbefa;
+    -fx-secondary-button-pressed-background-color: #7dbefa;
+
+    -fx-font-size: 20px;
+}

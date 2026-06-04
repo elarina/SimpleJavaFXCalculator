@@ -1,50 +1,38 @@
+@import "global.css";
+
 .button {
-    -fx-background-color: #ADD8E6;
-    -fx-opacity: 0.5;
-    -fx-border-color: white;
+    -fx-background-color: -fx-base-button-color;
+    -fx-opacity: -fx-base-button-opacity;
+    -fx-border-color: -fx-base-button-border-color;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-font-size: 1em;
+    -fx-background-insets: 1px;
     -fx-max-width: Infinity;
     -fx-max-height: Infinity;
-    -fx-background-radius: 20px;
-    -fx-border-radius: 20px;
-    -fx-font-size: 20px;
-    -fx-background-insets: 1px;
 }
 
 .button:hover {
-    -fx-background-color: #87CEFA;
+    -fx-background-color: -fx-base-button-hover-background-color;
 }
 
 .button:pressed {
-    -fx-background-color: #abc4c5;
+    -fx-background-color: -fx-base-button-pressed-background-color;
 }
 
 .label {
-    -fx-font-size: 30px;
+    -fx-font-size: 1.5em;
 }
 
-.controlOperation {
-    -fx-background-color: #6ca2d4;
+.controlOperation, .calculateOperation {
+    -fx-background-color: -fx-secondary-button-color;
     -fx-text-base-color: white;
 }
 
-.controlOperation:hover {
-    -fx-background-color: #7dbefa;
+.controlOperation:hover, .calculateOperation:hover {
+    -fx-background-color: -fx-secondary-button-hover-background-color;
 }
 
-.controlOperation:pressed {
-    -fx-background-color: #abc4c5;
+.controlOperation:pressed, .calculateOperation:pressed {
+    -fx-background-color: -fx-secondary-button-pressed-background-color;
 }
-
-.calculateOperation {
-    -fx-background-color: #6ca2d4;
-    -fx-text-base-color: white;
-}
-
-.calculateOperation:hover {
-    -fx-background-color: #7dbefa;
-}
-
-.calculateOperation:pressed {
-    -fx-background-color: #abc4c5;
-}
-
